@@ -11,7 +11,11 @@ import type {
 } from './types'
 
 const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:3000'
-const API_ROOT = `${API_BASE.replace(/\/$/, '')}/api/v1`
+const API_BASE_NORMALIZED = API_BASE.replace(/\/+$/, '')
+const API_ROOT = API_BASE_NORMALIZED.endsWith('/api/v1')
+  ? API_BASE_NORMALIZED
+  : `${API_BASE_NORMALIZED}/api/v1`
+const NEPTUN_CODE = import.meta.env.VITE_NEPTUN_CODE
 
 type RequestOptions = {
   token?: string | null
@@ -50,6 +54,10 @@ async function request<T>(
 
   if (options.token) {
     headers.set('Authorization', `Bearer ${options.token}`)
+  }
+
+  if (NEPTUN_CODE) {
+    headers.set('X-Neptun-Code', NEPTUN_CODE)
   }
 
   const response = await fetch(`${API_ROOT}${path}`, {
