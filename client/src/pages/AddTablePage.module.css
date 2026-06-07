@@ -1,0 +1,10 @@
+.centerPage {
+  display: grid;
+  place-items: start center;
+}
+
+.card {
+  width: min(560px, 100%);
+  display: grid;
+  gap: 16px;
+}

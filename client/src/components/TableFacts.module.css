@@ -1,0 +1,27 @@
+.detailList {
+  display: grid;
+  gap: 8px;
+}
+
+.detailList div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--border-faint);
+  border-radius: 8px;
+  padding: 9px 10px;
+  background: var(--surface-muted);
+}
+
+.detailList dt {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 820;
+}
+
+.detailList dd {
+  color: var(--text-strong);
+  font-weight: 850;
+  text-align: right;
+}

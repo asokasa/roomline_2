@@ -1,0 +1,35 @@
+.toastStack {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 20;
+  display: grid;
+  width: min(360px, calc(100vw - 36px));
+  gap: 10px;
+}
+
+.toast {
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: var(--surface-strong);
+  color: var(--text-strong);
+  font-weight: 820;
+  box-shadow: var(--shadow-panel);
+}
+
+.toast.success {
+  border-color: rgba(30, 184, 120, 0.45);
+  background: var(--success-surface);
+  color: var(--success-text);
+}
+
+.toast.error {
+  border-color: rgba(226, 74, 99, 0.45);
+  background: var(--danger-surface);
+  color: var(--danger-text);
+}
+
+.toast.info {
+  border-color: var(--border-strong);
+}

@@ -1,0 +1,130 @@
+.bookingPage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 18px;
+  align-items: start;
+}
+
+.bookingListPanel,
+.bookingDetailPanel,
+.bookingList {
+  display: grid;
+  gap: 14px;
+}
+
+.panelTitleRow,
+.actionRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.panelTitleRow {
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.bookingRow {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--border-faint);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--surface-muted);
+  color: var(--text-strong);
+  text-align: left;
+  cursor: pointer;
+}
+
+.bookingRow span {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 740;
+}
+
+.bookingRow em {
+  justify-self: start;
+  font-style: normal;
+}
+
+.bookingRowActive {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.emptyState {
+  border: 1px dashed var(--border-soft);
+  border-radius: 8px;
+  padding: 16px;
+  background: var(--surface-muted);
+  color: var(--text-muted);
+}
+
+.detailList {
+  display: grid;
+  gap: 8px;
+}
+
+.detailList div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid var(--border-faint);
+  border-radius: 8px;
+  padding: 9px 10px;
+  background: var(--surface-muted);
+}
+
+.detailList dt {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 820;
+}
+
+.detailList dd {
+  color: var(--text-strong);
+  font-weight: 850;
+  text-align: right;
+}
+
+.statusPill,
+.pending,
+.accepted,
+.declined {
+  border-radius: 999px;
+  padding: 3px 9px;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-muted);
+}
+
+.pending {
+  background: var(--warning-surface);
+  color: var(--warning-text);
+}
+
+.accepted {
+  background: var(--success-surface);
+  color: var(--success-text);
+}
+
+.declined {
+  background: var(--danger-surface);
+  color: var(--danger-text);
+}
+
+@media (max-width: 1040px) {
+  .bookingPage {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,48 @@
+.dateStepper {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: end;
+}
+
+.slotGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.slotButton {
+  display: grid;
+  gap: 4px;
+  border: 1px solid var(--border-faint);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--surface-muted);
+  color: var(--text-strong);
+  text-align: left;
+  cursor: pointer;
+}
+
+.slotButton span {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 740;
+}
+
+.slotButtonSelected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.slotButtonUnavailable,
+.slotButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.58;
+}
+
+@media (max-width: 760px) {
+  .dateStepper,
+  .slotGrid {
+    grid-template-columns: 1fr;
+  }
+}
