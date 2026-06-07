@@ -173,6 +173,12 @@ function bookingFormForUser(name = '', email = ''): BookingForm {
   }
 }
 
+function keepSelectedBooking(bookings: Booking[], currentId: number | null) {
+  return bookings.some((booking) => booking.id === currentId)
+    ? currentId
+    : bookings[0]?.id ?? null
+}
+
 function App() {
   const dispatch = useDispatch<AppDispatch>()
   const authToken = useSelector((state: RootState) => state.session.token)
@@ -224,8 +230,7 @@ function App() {
   const selectedTable = tables.find((table) => table.id === selectedId) ?? null
   const selectedTableId = selectedTable?.id ?? null
   const isAdmin = auth.user?.role === 'admin'
-  const isSignedIn = auth.user !== null
-  const canSelectTables = isSignedIn
+  const canSelectTables = auth.user !== null
   const canDragTables = isAdmin
 
   const clearanceIssueIds = useMemo(
@@ -285,9 +290,7 @@ function App() {
       const loadedBookings = await api.getMyBookings(auth.token)
       setMyBookings(loadedBookings)
       setSelectedMyBookingId((currentId) =>
-        loadedBookings.some((booking) => booking.id === currentId)
-          ? currentId
-          : loadedBookings[0]?.id ?? null,
+        keepSelectedBooking(loadedBookings, currentId),
       )
     } catch (error) {
       pushToast(`Foglalasaim betoltese sikertelen: ${getErrorMessage(error)}`, 'error')
@@ -307,9 +310,7 @@ function App() {
       const loadedBookings = await api.getAllBookings(auth.token)
       setAdminBookings(loadedBookings)
       setSelectedAdminBookingId((currentId) =>
-        loadedBookings.some((booking) => booking.id === currentId)
-          ? currentId
-          : loadedBookings[0]?.id ?? null,
+        keepSelectedBooking(loadedBookings, currentId),
       )
     } catch (error) {
       pushToast(
@@ -357,7 +358,7 @@ function App() {
     return () => {
       cancelled = true
     }
-  }, [])
+  }, [auth.token, dispatch])
 
   useEffect(() => {
     setBookingForm((current) => ({
@@ -374,7 +375,7 @@ function App() {
     }
 
     setTableEditor(tableFormFromTable(selectedTable))
-  }, [isAdmin, selectedTableId])
+  }, [isAdmin, selectedTable])
 
   useEffect(() => {
     if (auth.user?.role !== 'user' || !selectedTableId) {
@@ -785,16 +786,6 @@ function App() {
     </dl>
   )
 
-  const renderVisitorPanel = () => (
-    <section className={`${sharedStyles.panel} ${styles.sidePanel}`}>
-      <h2>Latogatoi nezet</h2>
-      <p>
-        Az elrendezes megtekintheto, de asztalt kivalasztani vagy foglalni csak
-        bejelentkezes utan lehet.
-      </p>
-    </section>
-  )
-
   const renderBookingPanel = () => {
     if (!selectedTable) {
       return (
@@ -1128,11 +1119,12 @@ function App() {
         <SummaryPanel tables={tables} />
       </div>
 
-      <aside className={styles.sidebar}>
-        {!isSignedIn ? renderVisitorPanel() : null}
-        {auth.user?.role === 'user' ? renderBookingPanel() : null}
-        {isAdmin ? renderAdminEditor() : null}
-      </aside>
+      {auth.user ? (
+        <aside className={styles.sidebar}>
+          {auth.user.role === 'user' ? renderBookingPanel() : null}
+          {isAdmin ? renderAdminEditor() : null}
+        </aside>
+      ) : null}
     </main>
   )
 
