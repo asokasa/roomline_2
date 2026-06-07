@@ -1,0 +1,87 @@
+.modalBackdrop {
+  position: fixed;
+  z-index: 20;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+  background: rgba(2, 5, 12, 0.74);
+  backdrop-filter: blur(10px);
+}
+
+.modal {
+  width: min(620px, 100%);
+  max-height: min(760px, calc(100vh - 44px));
+  overflow: auto;
+  border: 1px solid rgba(74, 235, 255, 0.15);
+  border-radius: 8px;
+  padding: 20px;
+  background:
+    linear-gradient(180deg, rgba(13, 22, 39, 0.98), rgba(7, 11, 23, 0.98)),
+    #0b1020;
+  box-shadow:
+    0 24px 70px rgba(0, 0, 0, 0.44),
+    0 0 42px rgba(56, 248, 255, 0.06);
+}
+
+.modalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.modalHeader h2 {
+  color: #f4fbff;
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.modalHeader p {
+  color: #8da9b6;
+  font-size: 14px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.checkboxField {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #bdeaf2;
+  font-weight: 820;
+}
+
+.checkboxField input {
+  width: 18px;
+  height: 18px;
+  accent-color: #78d2d8;
+}
+
+.modalActions {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 4px;
+}
+
+@media (max-width: 760px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .modalActions {
+    flex-direction: column-reverse;
+  }
+
+  .modalActions button {
+    width: 100%;
+  }
+}

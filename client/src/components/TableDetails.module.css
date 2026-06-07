@@ -1,0 +1,48 @@
+.detailsPanel {
+  display: grid;
+  gap: 14px;
+}
+
+.detailList {
+  display: grid;
+  gap: 8px;
+}
+
+.detailList div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid rgba(74, 235, 255, 0.09);
+  border-radius: 8px;
+  padding: 9px 10px;
+  background: rgba(5, 13, 25, 0.72);
+}
+
+.detailList dt {
+  color: #8da9b6;
+  font-size: 13px;
+  font-weight: 820;
+}
+
+.detailList dd {
+  color: #f5fdff;
+  font-weight: 850;
+}
+
+.warningText {
+  border-left: 4px solid #d77a97;
+  border-radius: 4px;
+  padding: 8px 10px;
+  background: rgba(92, 15, 36, 0.86);
+  color: #ffd7e3;
+  font-weight: 820;
+  box-shadow: 0 0 18px rgba(255, 75, 124, 0.09);
+}
+
+.emptyState {
+  border: 1px dashed rgba(122, 255, 231, 0.17);
+  border-radius: 8px;
+  padding: 16px;
+  background: rgba(5, 13, 25, 0.62);
+}

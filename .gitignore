@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Builds
+dist/
+
+# Local environment and runtime state
+.env
+.env.*
+!.env.example
+!**/.env.example
+dev.db
+*.log
+logs/
+
+# Prisma generated output
+prisma/generated/
+**/prisma/generated/
+
+# Editor/system files
+.vscode/
+.idea/
+.DS_Store

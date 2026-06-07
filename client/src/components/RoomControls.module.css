@@ -1,0 +1,20 @@
+.controlsPanel {
+  display: grid;
+  gap: 14px;
+}
+
+.roomSizeForm {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.roomSizeForm button {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 760px) {
+  .roomSizeForm {
+    grid-template-columns: 1fr;
+  }
+}
